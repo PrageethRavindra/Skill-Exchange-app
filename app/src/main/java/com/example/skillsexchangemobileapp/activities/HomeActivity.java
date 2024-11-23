@@ -2,8 +2,9 @@ package com.example.skillsexchangemobileapp.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,8 +12,8 @@ import com.example.skillsexchangemobileapp.R;
 
 public class HomeActivity extends AppCompatActivity {
 
-    private TextView tvWelcome;
-    private Button btnProfile, btnSettings, btnLogout;
+    private LinearLayout coursesCard, aboutUsCard, resourcePeopleCard, schedulingCard;
+    private Button profileManagementButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,37 +21,52 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         // Initialize views
-        tvWelcome = findViewById(R.id.tvWelcome);
-        btnProfile = findViewById(R.id.btnProfile);
-        btnSettings = findViewById(R.id.btnSettings);
-        btnLogout = findViewById(R.id.btnLogout);
+        coursesCard = findViewById(R.id.coursesCard);
+        aboutUsCard = findViewById(R.id.aboutUsCard);
+        resourcePeopleCard = findViewById(R.id.resourcePeopleCard);
+        schedulingCard = findViewById(R.id.schedulingCard);
+        profileManagementButton = findViewById(R.id.profileManagementButton);
 
-
-        // Get user data passed from LoginActivity (if any)
-        String username = getIntent().getStringExtra("username");
-        if (username != null && !username.isEmpty()) {
-            tvWelcome.setText("Welcome, " + username + "!");
-        }
-
-        // Set up button click listeners
-        btnProfile.setOnClickListener(v -> {
-            // Navigate to Profile Activity
-            Intent intent = new Intent(HomeActivity.this, UserProfileActivity.class);
-            startActivity(intent);
+        // Set click listeners for navigation
+        coursesCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeActivity.this, CoursesActivity.class);
+                startActivity(intent);
+            }
         });
 
-//        btnSettings.setOnClickListener(v -> {
-//            // Navigate to Settings Activity
-//            Intent intent = new Intent(HomeActivity.this, SettingsActivity.class);
-//            startActivity(intent);
-//        });
+        aboutUsCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeActivity.this, AboutUsActivity.class);
+                startActivity(intent);
+            }
+        });
 
-        btnLogout.setOnClickListener(v -> {
-            // Logout and return to LoginActivity
-            Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
-            finish();
+        resourcePeopleCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeActivity.this, ResourcePeopleActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        schedulingCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeActivity.this, SchedulingActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        // Profile Management Button click listener
+        profileManagementButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeActivity.this, ProfileManagementActivity.class);
+                startActivity(intent);
+            }
         });
     }
 }

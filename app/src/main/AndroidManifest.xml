@@ -16,6 +16,8 @@
         <activity android:name=".activities.GetStartedActivity" />
         <activity android:name=".activities.RegisterActivity" />
         <activity android:name=".activities.LoginActivity" />
+        <activity android:name=".activities.HomeActivity" />
+        <activity android:name=".activities.UserProfileActivity" />
         <activity android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

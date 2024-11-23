@@ -4,60 +4,113 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@android:color/white"
+    android:background="#76449A"
     android:padding="16dp">
 
-    <!-- Welcome Text -->
+    <!-- Header Section -->
     <TextView
-        android:id="@+id/tvWelcome"
+        android:id="@+id/headerTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Skill Exchanger"
+        android:textSize="24sp"
+        android:gravity="center"
+        android:textColor="#FFFFFF"
+        android:background="#5A36A0"
+        android:padding="16dp"
+        android:layout_marginBottom="20dp" />
+
+    <!-- Quick Options Section -->
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Welcome, User!"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:layout_gravity="center_horizontal"
-        android:padding="16dp" />
+        android:text="Quick Options"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:layout_marginBottom="8dp" />
 
-    <!-- Navigation Buttons -->
+    <!-- Cards for Options -->
     <LinearLayout
+        android:id="@+id/coursesCard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="center"
-        android:padding="16dp">
+        android:background="#6C4EFF"
+        android:padding="16dp"
+        android:layout_marginBottom="12dp"
+        android:elevation="4dp">
 
-        <Button
-            android:id="@+id/btnProfile"
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Profile"
-            android:layout_marginEnd="16dp" />
-
-        <Button
-            android:id="@+id/btnSettings"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Settings" />
+            android:text="COURSES"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp" />
     </LinearLayout>
 
-    <!-- Content Placeholder -->
-    <TextView
-        android:id="@+id/tvContent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="This is your home page content."
-        android:gravity="center"
-        android:layout_gravity="center_horizontal"
-        android:padding="16dp" />
-
-    <!-- Logout Button -->
-    <Button
-        android:id="@+id/btnLogout"
+    <LinearLayout
+        android:id="@+id/aboutUsCard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Logout"
-        android:background="@color/design_default_color_primary"
-        android:textColor="@android:color/white"
-        android:layout_marginTop="32dp" />
+        android:orientation="horizontal"
+        android:background="#FF4A85"
+        android:padding="16dp"
+        android:layout_marginBottom="12dp"
+        android:elevation="4dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ABOUT US"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/resourcePeopleCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="#FF8800"
+        android:padding="16dp"
+        android:layout_marginBottom="12dp"
+        android:elevation="4dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="RESOURCE PEOPLE"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/schedulingCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="#FFA62B"
+        android:padding="16dp"
+        android:elevation="4dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SCHEDULING CALENDAR"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <!-- Profile Management Button -->
+    <Button
+        android:id="@+id/profileManagementButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="#5A36A0"
+        android:text="Profile Management"
+        android:textColor="#FFFFFF"
+        android:padding="12dp"
+        android:textSize="16sp"
+        android:layout_gravity="center" />
 </LinearLayout>
