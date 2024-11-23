@@ -14,7 +14,21 @@
         android:src="@drawable/ic_profile_placeholder"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="20dp"
-        android:background="@drawable/circle_bg"/>
+        android:background="@drawable/circle_bg"
+        android:clickable="true"
+        android:focusable="true"
+        android:contentDescription="Upload Profile Picture"/>
+
+    <TextView
+        android:id="@+id/changePhotoText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Change Photo"
+        android:textColor="@color/primaryColor"
+        android:layout_gravity="center_horizontal"
+        android:paddingBottom="20dp"
+        android:clickable="true"
+        android:focusable="true"/>
 
     <EditText
         android:id="@+id/nameEditText"
@@ -22,7 +36,7 @@
         android:layout_height="wrap_content"
         android:hint="Name"
         android:padding="10dp"
-        android:background="@drawable/edit_text_bg_image"/>
+        />
 
     <EditText
         android:id="@+id/skillsEditText"
@@ -30,7 +44,6 @@
         android:layout_height="wrap_content"
         android:hint="Skills (e.g., Programming, Cooking)"
         android:padding="10dp"
-        android:background="@drawable/edit_text_bg_image"
         android:layout_marginTop="10dp"/>
 
     <Button

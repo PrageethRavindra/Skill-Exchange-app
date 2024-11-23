@@ -18,6 +18,10 @@
         <activity android:name=".activities.LoginActivity" />
         <activity android:name=".activities.HomeActivity" />
         <activity android:name=".activities.UserProfileActivity" />
+        <activity android:name=".activities.CoursesActivity" />
+        <activity android:name=".activities.AboutUsActivity" />
+        <activity android:name=".activities.ResourcePeopleActivity" />
+        <activity android:name=".activities.SchedulingActivity" />
         <activity android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
