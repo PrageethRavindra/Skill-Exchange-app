@@ -9,11 +9,11 @@
 
     <ImageView
         android:id="@+id/appLogo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_app_logo"
+        android:layout_width="127dp"
+        android:layout_height="120dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="30dp"/>
+        android:layout_marginBottom="30dp"
+        android:src="@drawable/ic_app_logo" />
 
     <EditText
         android:id="@+id/emailEditText"
@@ -48,9 +48,9 @@
         android:id="@+id/signUpTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Don't have an account? Sign up"
-        android:textColor="@color/primaryColor"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="20dp"
+        android:text="Don't have an account? Sign up"
+        android:textColor="@color/primaryColor" />
 
 </LinearLayout>

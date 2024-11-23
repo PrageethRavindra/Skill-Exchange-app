@@ -11,6 +11,12 @@
         android:layout_height="wrap_content"
         android:text="Welcome to Skills Exchange Mobile App!"
         android:textSize="18sp"
-        android:textColor="@android:color/black"/>
+        android:layout_marginBottom="20dp"
+        android:textColor="@android:color/black" />
 
+    <Button
+        android:id="@+id/btnGetStarted"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Get Started" />
 </LinearLayout>
