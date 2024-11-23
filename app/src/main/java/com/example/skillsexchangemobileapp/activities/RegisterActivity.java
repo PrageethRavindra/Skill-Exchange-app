@@ -1,8 +1,6 @@
 package com.example.skillsexchangemobileapp.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -13,10 +11,9 @@ import com.example.skillsexchangemobileapp.R;
 import com.example.skillsexchangemobileapp.utils.DatabaseHelper;
 
 public class RegisterActivity extends AppCompatActivity {
-
     private EditText nameEditText, emailEditText, passwordEditText, confirmPasswordEditText;
     private Button registerButton;
-    private DatabaseHelper dbHelper;
+    private DatabaseHelper databaseHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,39 +27,31 @@ public class RegisterActivity extends AppCompatActivity {
         confirmPasswordEditText = findViewById(R.id.confirmPasswordEditText);
         registerButton = findViewById(R.id.registerButton);
 
-        dbHelper = new DatabaseHelper(this);
+        // Initialize DatabaseHelper
+        databaseHelper = new DatabaseHelper(this);
 
-        registerButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String name = nameEditText.getText().toString().trim();
-                String email = emailEditText.getText().toString().trim();
-                String password = passwordEditText.getText().toString().trim();
-                String confirmPassword = confirmPasswordEditText.getText().toString().trim();
+        // Set click listener for the register button
+        registerButton.setOnClickListener(v -> registerUser());
+    }
 
-                if (name.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
-                    Toast.makeText(RegisterActivity.this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
-                } else if (!password.equals(confirmPassword)) {
-                    Toast.makeText(RegisterActivity.this, "Passwords do not match", Toast.LENGTH_SHORT).show();
-                } else {
-                    // Check if email already exists in the database
-                    if (dbHelper.checkEmailExists(email)) {
-                        Toast.makeText(RegisterActivity.this, "Email already exists", Toast.LENGTH_SHORT).show();
-                    } else {
-                        // Add the new user to the database
-                        boolean success = dbHelper.addUser(name, email, password);
-                        if (success) {
-                            Toast.makeText(RegisterActivity.this, "Registration Successful", Toast.LENGTH_SHORT).show();
-                            // Navigate to login page
-                            Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-                            startActivity(intent);
-                            finish(); // Close the RegisterActivity
-                        } else {
-                            Toast.makeText(RegisterActivity.this, "Registration Failed", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                }
-            }
-        });
+    private void registerUser() {
+        String name = nameEditText.getText().toString().trim();
+        String email = emailEditText.getText().toString().trim();
+        String password = passwordEditText.getText().toString().trim();
+        String confirmPassword = confirmPasswordEditText.getText().toString().trim();
+
+        if (name.isEmpty() || email.isEmpty() || password.isEmpty() || !password.equals(confirmPassword)) {
+            Toast.makeText(this, "Please fill all fields correctly", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Add the user to the database
+        boolean success = databaseHelper.addUser(name, email, password);
+        if (success) {
+            Toast.makeText(this, "Registration Successful", Toast.LENGTH_SHORT).show();
+            finish(); // Close the activity
+        } else {
+            Toast.makeText(this, "Registration Failed: Email already exists", Toast.LENGTH_SHORT).show();
+        }
     }
 }
