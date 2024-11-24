@@ -32,7 +32,6 @@ public class LearnerHomeActivity extends AppCompatActivity {
         coursesCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Navigate to CoursesActivity
                 Intent intent = new Intent(LearnerHomeActivity.this, CourseActivity.class);
                 startActivity(intent);
                 Toast.makeText(LearnerHomeActivity.this, "Navigating to Courses", Toast.LENGTH_SHORT).show();

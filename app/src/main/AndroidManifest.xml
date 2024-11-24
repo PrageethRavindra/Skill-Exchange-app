@@ -21,13 +21,14 @@
         <activity android:name=".activities.GetStartedActivity" />
         <activity android:name=".activities.RegistrationActivity" />
         <activity android:name=".activities.LoginActivity" />
-        <activity android:name=".activities.LearnerHomeActivity" />
         <activity android:name=".activities.ProfileManagementActivity" />
         <activity android:name=".activities.AboutUsActivity" />
         <activity android:name=".activities.ResourcePeopleActivity" />
         <activity android:name=".activities.SchedulingActivity" />
-        <activity android:name=".activities.ResourcePeopleHomeActivity" />
+        <activity android:name=".activities.LearnerHomeActivity" />
         <activity android:name=".activities.CourseActivity" />
+        <activity android:name=".activities.ResourcePeopleHomeActivity" />
+
         <activity android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
