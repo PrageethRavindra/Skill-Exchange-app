@@ -42,8 +42,8 @@ public class RegistrationActivity extends AppCompatActivity {
         dbHelper = new DBHelper(this);
 
         // Populate the Spinner with roles
-        String[] roles = {"Learner", "Resource People"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, roles);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.roles_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         roleSpinner.setAdapter(adapter);
 
