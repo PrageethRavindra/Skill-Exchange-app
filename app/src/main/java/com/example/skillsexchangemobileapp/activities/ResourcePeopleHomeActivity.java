@@ -15,5 +15,6 @@ public class ResourcePeopleHomeActivity extends AppCompatActivity {
 
         // Example of an action
         Toast.makeText(this, "Welcome to Resource People Dashboard", Toast.LENGTH_SHORT).show();
+
     }
 }

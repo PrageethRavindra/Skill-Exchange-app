@@ -31,11 +31,11 @@
 
     <!-- Cards for Options -->
     <LinearLayout
-        android:id="@+id/coursesCard"
+        android:id="@+id/CourseCard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="#81C784"
+        android:background="#66BB6A"
         android:padding="16dp"
         android:layout_marginBottom="12dp"
         android:elevation="4dp">

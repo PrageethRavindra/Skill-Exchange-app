@@ -23,12 +23,11 @@
         <activity android:name=".activities.LoginActivity" />
         <activity android:name=".activities.LearnerHomeActivity" />
         <activity android:name=".activities.ProfileManagementActivity" />
-        <activity android:name=".activities.CoursesActivity" />
         <activity android:name=".activities.AboutUsActivity" />
         <activity android:name=".activities.ResourcePeopleActivity" />
         <activity android:name=".activities.SchedulingActivity" />
         <activity android:name=".activities.ResourcePeopleHomeActivity" />
-        <activity android:name=".activities.SelectRoleActivity" />
+        <activity android:name=".activities.CourseActivity" />
         <activity android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

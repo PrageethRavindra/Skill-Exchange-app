@@ -8,7 +8,6 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.skillsexchangemobileapp.activities.GetStartedActivity;
-import com.example.skillsexchangemobileapp.activities.SelectRoleActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Navigate to GetStartedActivity
-                Intent intent = new Intent(MainActivity.this, SelectRoleActivity.class);
+                Intent intent = new Intent(MainActivity.this, GetStartedActivity.class);
                 startActivity(intent);
             }
         });
