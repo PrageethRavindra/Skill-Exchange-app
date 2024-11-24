@@ -5,8 +5,6 @@
     android:layout_height="match_parent"
     android:padding="20dp">
 
-
-
     <ImageView
         android:id="@+id/background_image"
         android:layout_width="match_parent"
@@ -21,7 +19,7 @@
         android:layout_height="200dp"
         android:src="@drawable/ic_app_logo"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp"/>
+        android:layout_marginTop="100dp" />
 
     <EditText
         android:id="@+id/emailEditText"
@@ -34,8 +32,7 @@
         android:layout_marginTop="20dp"
         android:inputType="textEmailAddress"
         android:textColor="@color/light_gray"
-        android:padding="10dp"
-        />
+        android:padding="10dp" />
 
     <EditText
         android:id="@+id/passwordEditText"
@@ -48,21 +45,31 @@
         android:inputType="textPassword"
         android:textColor="@color/light_gray"
         android:padding="10dp"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="10dp" />
+
+    <!-- Role Selection Spinner -->
+    <Spinner
+        android:id="@+id/roleSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/passwordEditText"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:background="@android:color/white" />
+
 
     <Button
         android:id="@+id/loginButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/passwordEditText"
+        android:layout_below="@id/roleSpinner"
         android:layout_marginTop="40dp"
         android:text="Login"
         android:layout_centerHorizontal="true"
         android:textSize="20sp"
         android:background="@drawable/button_border"
         android:textColor="@color/white"
-        android:padding="12dp"
-        />
+        android:padding="12dp" />
 
     <TextView
         android:id="@+id/signUpTextView"

@@ -1,87 +1,105 @@
 package com.example.skillsexchangemobileapp.activities;
 
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.skillsexchangemobileapp.R;
-import com.example.skillsexchangemobileapp.utils.DatabaseHelper;
+import com.example.skillsexchangemobileapp.utils.DBHelper;
 
 public class LoginActivity extends AppCompatActivity {
 
+    private Spinner roleSpinner;
     private EditText emailEditText, passwordEditText;
     private Button loginButton;
     private TextView signUpTextView;
-    private DatabaseHelper dbHelper;
+    private DBHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_login); // Make sure this matches your layout XML file name
 
         // Initialize views
+        roleSpinner = findViewById(R.id.roleSpinner);
         emailEditText = findViewById(R.id.emailEditText);
         passwordEditText = findViewById(R.id.passwordEditText);
         loginButton = findViewById(R.id.loginButton);
         signUpTextView = findViewById(R.id.signUpTextView);
 
-        dbHelper = new DatabaseHelper(this);
+        // Initialize the database helper
+        dbHelper = new DBHelper(this);
 
-        // Set onClick listener for login button
-        loginButton.setOnClickListener(new View.OnClickListener() {
+        // Set up the Spinner (dropdown)
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.roles_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        roleSpinner.setAdapter(adapter);
+
+        // Set listener for role selection
+        roleSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onClick(View v) {
-                String email = emailEditText.getText().toString().trim();
-                String password = passwordEditText.getText().toString().trim();
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                // Handle role selection if needed
+                String selectedRole = parentView.getItemAtPosition(position).toString();
+                // You can use the selectedRole to show or hide fields based on the selected role
+                Toast.makeText(LoginActivity.this, "Selected Role: " + selectedRole, Toast.LENGTH_SHORT).show();
+            }
 
-                if (email.isEmpty() || password.isEmpty()) {
-                    Toast.makeText(LoginActivity.this, "Please enter both email and password", Toast.LENGTH_SHORT).show();
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // Do nothing
+            }
+        });
+
+        // Handle login button click
+        loginButton.setOnClickListener(v -> {
+            // Get the entered email, password, and role
+            String email = emailEditText.getText().toString().trim();
+            String password = passwordEditText.getText().toString().trim();
+            String role = roleSpinner.getSelectedItem().toString();
+
+            // Validate inputs
+            if (email.isEmpty() || password.isEmpty()) {
+                Toast.makeText(LoginActivity.this, "Email and password are required", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // Check if the credentials match in the database
+            boolean userExists = dbHelper.checkUserCredentials(email, password, role);
+
+            if (userExists) {
+                // If credentials match, navigate to the respective home screen
+                Intent intent;
+                if (role.equals("Learner")) {
+                    intent = new Intent(LoginActivity.this, LearnerHomeActivity.class); // Replace with your Learner home activity
+                } else if (role.equals("Resource People")) {
+                    intent = new Intent(LoginActivity.this, ResourcePeopleHomeActivity.class); // Replace with your Resource People home activity
                 } else {
-                    if (checkCredentials(email, password)) {
-                        // If credentials are correct, go to HomeActivity
-                        Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                        startActivity(intent);
-                        finish(); // Close the login activity
-                    } else {
-                        Toast.makeText(LoginActivity.this, "Invalid email or password", Toast.LENGTH_SHORT).show();
-                    }
+                    Toast.makeText(LoginActivity.this, "Invalid role", Toast.LENGTH_SHORT).show();
+                    return;
                 }
-            }
-        });
-
-        // Set onClick listener for sign up link
-        signUpTextView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Navigate to RegisterActivity if the user doesn't have an account
-                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
                 startActivity(intent);
+                finish(); // Close the login activity
+            } else {
+                Toast.makeText(LoginActivity.this, "Invalid credentials", Toast.LENGTH_SHORT).show();
             }
         });
-    }
 
-    // Method to check if the email and password match a record in the database
-    private boolean checkCredentials(String email, String password) {
-        // Access database for user credentials
-        Cursor cursor = dbHelper.getReadableDatabase().query(
-                DatabaseHelper.TABLE_USERS,   // Table to query
-                new String[]{DatabaseHelper.COLUMN_EMAIL, DatabaseHelper.COLUMN_PASSWORD}, // Columns to return
-                DatabaseHelper.COLUMN_EMAIL + " = ? AND " + DatabaseHelper.COLUMN_PASSWORD + " = ?", // WHERE clause
-                new String[]{email, password}, // Selection arguments
-                null, // Group by
-                null, // Having
-                null  // Order by
-        );
-
-        boolean isValid = cursor.getCount() > 0; // If a matching record is found
-        cursor.close(); // Close cursor after use
-        return isValid; // Return if the credentials are valid
+        // Handle sign up link click
+        signUpTextView.setOnClickListener(v -> {
+            // Navigate to the sign-up screen
+            Intent intent = new Intent(LoginActivity.this, RegistrationActivity.class);
+            startActivity(intent);
+        });
     }
 }

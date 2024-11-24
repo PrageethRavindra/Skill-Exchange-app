@@ -24,7 +24,7 @@ public class GetStartedActivity extends AppCompatActivity {
         });
 
         registerButton.setOnClickListener(v -> {
-            Intent intent = new Intent(GetStartedActivity.this, RegisterActivity.class);
+            Intent intent = new Intent(GetStartedActivity.this, RegistrationActivity.class);
             startActivity(intent);
         });
     }

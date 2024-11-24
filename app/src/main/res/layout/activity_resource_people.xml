@@ -16,31 +16,116 @@
             android:text="Resource People"
             android:textSize="22sp"
             android:textStyle="bold"
-            android:paddingBottom="12dp"/>
+            android:paddingBottom="12dp" />
 
-        <TextView
-            android:id="@+id/resourcePerson1"
+        <!-- Resource Person 1 -->
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="• Dr. Jane Doe: Expert in Data Science"
-            android:textSize="16sp"
-            android:paddingBottom="8dp"/>
+            android:layout_height="145dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/box_background_pic"
+            android:orientation="vertical"
+            android:padding="16dp">
 
-        <TextView
-            android:id="@+id/resourcePerson2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="• Mr. John Smith: Android Development Guru"
-            android:textSize="16sp"
-            android:paddingBottom="8dp"/>
+            <TextView
+                android:id="@+id/resourcePerson1Name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Dr. Jane Doe"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/resourcePerson3"
+            <TextView
+                android:id="@+id/resourcePerson1Expertise"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="4dp"
+                android:text="Expert in Data Science"
+                android:textSize="16sp" />
+
+            <RatingBar
+                android:id="@+id/resourcePerson1Rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:numStars="5"
+                android:paddingTop="8dp"
+                android:rating="4.5"
+                android:stepSize="0.5" />
+        </LinearLayout>
+
+        <!-- Resource Person 2 -->
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="• Ms. Emily Johnson: Web Development Specialist"
-            android:textSize="16sp"
-            android:paddingBottom="8dp"/>
+            android:layout_height="149dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/box_background_pic"
+
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/resourcePerson2Name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mr. John Smith"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/resourcePerson2Expertise"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="4dp"
+                android:text="Android Development Guru"
+                android:textSize="16sp" />
+
+            <RatingBar
+                android:id="@+id/resourcePerson2Rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:numStars="5"
+                android:paddingTop="8dp"
+                android:rating="4.0"
+                android:stepSize="0.5" />
+        </LinearLayout>
+
+        <!-- Resource Person 3 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="151dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/box_background_pic"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/resourcePerson3Name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ms. Emily Johnson"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/resourcePerson3Expertise"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="4dp"
+                android:text="Web Development Specialist"
+                android:textSize="16sp" />
+
+            <RatingBar
+                android:id="@+id/resourcePerson3Rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:numStars="5"
+                android:paddingTop="8dp"
+                android:rating="4.8"
+                android:stepSize="0.5" />
+        </LinearLayout>
 
     </LinearLayout>
 </ScrollView>
