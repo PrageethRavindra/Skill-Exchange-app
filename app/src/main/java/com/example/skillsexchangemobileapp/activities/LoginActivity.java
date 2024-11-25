@@ -2,11 +2,13 @@ package com.example.skillsexchangemobileapp.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,7 +24,9 @@ public class LoginActivity extends AppCompatActivity {
     private EditText emailEditText, passwordEditText;
     private Button loginButton;
     private TextView signUpTextView;
+    private ImageView passwordToggle;
     private DBHelper dbHelper;
+    private boolean isPasswordVisible = false; // To track password visibility state
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +39,7 @@ public class LoginActivity extends AppCompatActivity {
         passwordEditText = findViewById(R.id.passwordEditText);
         loginButton = findViewById(R.id.loginButton);
         signUpTextView = findViewById(R.id.signUpTextView);
+        passwordToggle = findViewById(R.id.passwordToggle); // Initialize password toggle ImageView
 
         // Initialize the database helper
         dbHelper = new DBHelper(this);
@@ -49,9 +54,7 @@ public class LoginActivity extends AppCompatActivity {
         roleSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                // Handle role selection if needed
                 String selectedRole = parentView.getItemAtPosition(position).toString();
-                // You can use the selectedRole to show or hide fields based on the selected role
                 Toast.makeText(LoginActivity.this, "Selected Role: " + selectedRole, Toast.LENGTH_SHORT).show();
             }
 
@@ -61,43 +64,55 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        // Handle password visibility toggle
+        passwordToggle.setOnClickListener(v -> {
+            if (isPasswordVisible) {
+                // Hide password
+                passwordEditText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                passwordToggle.setImageResource(R.drawable.ic_visibility_off); // Use your "eye closed" icon
+                isPasswordVisible = false;
+            } else {
+                // Show password
+                passwordEditText.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                passwordToggle.setImageResource(R.drawable.ic_visibility_on); // Use your "eye open" icon
+                isPasswordVisible = true;
+            }
+            // Move the cursor to the end of the text
+            passwordEditText.setSelection(passwordEditText.length());
+        });
+
         // Handle login button click
         loginButton.setOnClickListener(v -> {
-            // Get the entered email, password, and role
             String email = emailEditText.getText().toString().trim();
             String password = passwordEditText.getText().toString().trim();
             String role = roleSpinner.getSelectedItem().toString();
 
-            // Validate inputs
             if (email.isEmpty() || password.isEmpty()) {
                 Toast.makeText(LoginActivity.this, "Email and password are required", Toast.LENGTH_SHORT).show();
                 return;
             }
 
-            // Check if the credentials match in the database
             boolean userExists = dbHelper.checkUserCredentials(email, password, role);
 
             if (userExists) {
-                // If credentials match, navigate to the respective home screen
                 Intent intent;
                 if (role.equals("Learner")) {
-                    intent = new Intent(LoginActivity.this, LearnerHomeActivity.class); // Replace with your Learner home activity
+                    intent = new Intent(LoginActivity.this, LearnerHomeActivity.class);
                 } else if (role.equals("Resource People")) {
-                    intent = new Intent(LoginActivity.this, ResourcePeopleHomeActivity.class); // Replace with your Resource People home activity
+                    intent = new Intent(LoginActivity.this, ResourcePeopleHomeActivity.class);
                 } else {
                     Toast.makeText(LoginActivity.this, "Invalid role", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 startActivity(intent);
-                finish(); // Close the login activity
+                finish();
             } else {
                 Toast.makeText(LoginActivity.this, "Invalid credentials", Toast.LENGTH_SHORT).show();
             }
         });
 
-        // Handle sign up link click
+        // Handle sign-up link click
         signUpTextView.setOnClickListener(v -> {
-            // Navigate to the sign-up screen
             Intent intent = new Intent(LoginActivity.this, RegistrationActivity.class);
             startActivity(intent);
         });

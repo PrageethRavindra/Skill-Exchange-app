@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="@drawable/background_image"
     android:padding="16dp">
 
     <LinearLayout
@@ -18,7 +18,6 @@
             android:layout_height="wrap_content"
             android:queryHint="Search for courses"
             android:iconifiedByDefault="false"
-
             android:padding="8dp"
             android:elevation="2dp" />
 
@@ -27,9 +26,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Categories"
-            android:textSize="18sp"
+            android:textSize="20sp"
             android:fontFamily="sans-serif-medium"
-            android:textColor="#000000"
+            android:textColor="@color/white"
             android:layout_marginTop="16dp" />
 
         <!-- Music Card -->
@@ -38,7 +37,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-
             android:padding="16dp"
             android:layout_marginTop="8dp"
             android:clickable="true"
@@ -47,7 +45,7 @@
             <ImageView
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-
+                android:src="@drawable/music_icon"
                 android:contentDescription="Music Icon" />
 
             <TextView
@@ -56,8 +54,8 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="16dp"
                 android:text="Music"
-                android:textSize="16sp"
-                android:textColor="#000000" />
+                android:textSize="20sp"
+                android:textColor="@color/white" />
         </LinearLayout>
 
         <!-- Photography Card -->
@@ -75,7 +73,7 @@
             <ImageView
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-
+                android:src="@drawable/photography_icon"
                 android:contentDescription="Photography Icon" />
 
             <TextView
@@ -84,8 +82,8 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="16dp"
                 android:text="Photography"
-                android:textSize="16sp"
-                android:textColor="#000000" />
+                android:textSize="20sp"
+                android:textColor="@color/white" />
         </LinearLayout>
 
         <!-- Fitness Card -->
@@ -103,7 +101,7 @@
             <ImageView
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-
+                android:src="@drawable/fitness_icon"
                 android:contentDescription="Fitness Icon" />
 
             <TextView
@@ -112,8 +110,8 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="16dp"
                 android:text="Fitness"
-                android:textSize="16sp"
-                android:textColor="#000000" />
+                android:textSize="20sp"
+                android:textColor="@color/white" />
         </LinearLayout>
 
         <!-- Dancing Card -->
@@ -131,7 +129,7 @@
             <ImageView
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-
+                android:src="@drawable/dancing_icon"
                 android:contentDescription="Dancing Icon" />
 
             <TextView
@@ -140,8 +138,8 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="16dp"
                 android:text="Dancing"
-                android:textSize="16sp"
-                android:textColor="#000000" />
+                android:textSize="20sp"
+                android:textColor="@color/white" />
         </LinearLayout>
 
         <!-- Cooking Card -->
@@ -159,7 +157,7 @@
             <ImageView
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-
+                android:src="@drawable/cooking_icon"
                 android:contentDescription="Cooking Icon" />
 
             <TextView
@@ -168,8 +166,8 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="16dp"
                 android:text="Cooking"
-                android:textSize="16sp"
-                android:textColor="#000000" />
+                android:textSize="20sp"
+                android:textColor="@color/white" />
         </LinearLayout>
 
         <!-- Programming Card -->
@@ -187,7 +185,7 @@
             <ImageView
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-
+                android:src="@drawable/code_icon"
                 android:contentDescription="Programming Icon" />
 
             <TextView
@@ -196,8 +194,62 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="16dp"
                 android:text="Programming"
-                android:textSize="16sp"
-                android:textColor="#000000" />
+                android:textSize="20sp"
+                android:textColor="@color/white" />
+        </LinearLayout>
+        <!-- Programming Card -->
+        <LinearLayout
+            android:id="@+id/speakingCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+
+            android:padding="16dp"
+            android:layout_marginTop="8dp"
+            android:clickable="true"
+            android:focusable="true">
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/speaking_icon"
+                android:contentDescription="Speaking Icon" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="16dp"
+                android:text="Speaking"
+                android:textSize="20sp"
+                android:textColor="@color/white" />
+        </LinearLayout>
+        <!-- Singing Card -->
+        <LinearLayout
+            android:id="@+id/singingCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+
+            android:padding="16dp"
+            android:layout_marginTop="8dp"
+            android:clickable="true"
+            android:focusable="true">
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/singing_icon"
+                android:contentDescription="Singing Icon" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="16dp"
+                android:text="Singing"
+                android:textSize="20sp"
+                android:textColor="@color/white" />
         </LinearLayout>
     </LinearLayout>
 </ScrollView>
