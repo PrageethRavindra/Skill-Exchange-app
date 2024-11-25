@@ -47,7 +47,8 @@ public class LearnerHomeActivity extends AppCompatActivity {
                 Toast.makeText(LearnerHomeActivity.this, "Navigating to Scheduling Calendar", Toast.LENGTH_SHORT).show();
             }
         });
-
+        // Example of an action
+        Toast.makeText(this, "Welcome to Learner Dashboard", Toast.LENGTH_SHORT).show();
         // Set click listener for "Profile Management"
         profileManagementButton.setOnClickListener(new View.OnClickListener() {
             @Override

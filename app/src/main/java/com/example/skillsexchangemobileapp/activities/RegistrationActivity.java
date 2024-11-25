@@ -47,7 +47,8 @@ public class RegistrationActivity extends AppCompatActivity {
                 R.array.roles_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         roleSpinner.setAdapter(adapter);
-
+        // Example of an action
+        Toast.makeText(this, "Welcome to Registration Dashboard", Toast.LENGTH_SHORT).show();
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -56,6 +57,7 @@ public class RegistrationActivity extends AppCompatActivity {
                 String email = emailEditText.getText().toString().trim();
                 String password = passwordEditText.getText().toString().trim();
                 String confirmPassword = confirmPasswordEditText.getText().toString().trim();
+                // Example of an action
 
                 // Validate the input
                 if (name.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
@@ -112,7 +114,9 @@ public class RegistrationActivity extends AppCompatActivity {
                 } else {
                     Toast.makeText(RegistrationActivity.this, "Registration failed", Toast.LENGTH_SHORT).show();
                 }
+
             }
+
         });
     }
 }

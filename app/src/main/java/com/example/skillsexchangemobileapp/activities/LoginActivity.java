@@ -40,7 +40,8 @@ public class LoginActivity extends AppCompatActivity {
         loginButton = findViewById(R.id.loginButton);
         signUpTextView = findViewById(R.id.signUpTextView);
         passwordToggle = findViewById(R.id.passwordToggle); // Initialize password toggle ImageView
-
+        // Example of an action
+        Toast.makeText(this, "Welcome to Login Dashboard", Toast.LENGTH_SHORT).show();
         // Initialize the database helper
         dbHelper = new DBHelper(this);
 
