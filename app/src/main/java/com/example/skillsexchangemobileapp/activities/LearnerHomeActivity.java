@@ -1,6 +1,5 @@
 package com.example.skillsexchangemobileapp.activities;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -17,7 +16,7 @@ public class LearnerHomeActivity extends AppCompatActivity {
     private LinearLayout coursesCard, schedulingCard;
     private Button profileManagementButton;
 
-    @SuppressLint("MissingInflatedId")
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,7 +53,7 @@ public class LearnerHomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Navigate to ProfileManagementActivity (replace with your activity)
-                Intent intent = new Intent(LearnerHomeActivity.this, ProfileManagementActivity.class);
+                Intent intent = new Intent(LearnerHomeActivity.this, Learner_profile_managementActivity.class);
                 startActivity(intent);
                 Toast.makeText(LearnerHomeActivity.this, "Navigating to Profile Management", Toast.LENGTH_SHORT).show();
             }

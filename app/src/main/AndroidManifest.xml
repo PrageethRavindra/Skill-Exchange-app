@@ -28,7 +28,8 @@
         <activity android:name=".activities.LearnerHomeActivity" />
         <activity android:name=".activities.CourseActivity" />
         <activity android:name=".activities.ResourcePeopleHomeActivity" />
-        <activity android:name=".activities.EditUserProfile" />
+        <activity android:name=".activities.Learner_profile_managementActivity" />
+        <activity android:name=".activities.Resource_people_profile_managementActivity" />
         <activity android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
