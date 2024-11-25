@@ -2,6 +2,7 @@ package com.example.skillsexchangemobileapp.activities;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -16,7 +17,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.skillsexchangemobileapp.R;
 import com.example.skillsexchangemobileapp.utils.DBHelper;
 
-import java.io.ByteArrayOutputStream;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class ProfileManagementActivity extends AppCompatActivity {
@@ -24,13 +26,13 @@ public class ProfileManagementActivity extends AppCompatActivity {
     private static final int PICK_IMAGE_REQUEST = 1;
 
     private ImageView profilePicture;
-    private EditText nameEditText, skillsEditText;
-    private Button saveButton;
+    private EditText editName, editSkills, editPicturePath;
+    private Button btnSave;
 
     private Uri selectedImageUri;
     private Bitmap selectedBitmap;
 
-    private DBHelper databaseHelper;
+    private DBHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,21 +41,21 @@ public class ProfileManagementActivity extends AppCompatActivity {
 
         // Initialize views
         profilePicture = findViewById(R.id.profilePicture);
-        nameEditText = findViewById(R.id.nameEditText);
-        skillsEditText = findViewById(R.id.skillsEditText);
-        saveButton = findViewById(R.id.saveButton);
+        editName = findViewById(R.id.nameEditText);
+        editSkills = findViewById(R.id.skillsEditText);
+        btnSave = findViewById(R.id.saveButton);
 
         // Initialize database helper
-        databaseHelper = new DBHelper(this);
+        dbHelper = new DBHelper(this);
 
-        // Load user data from the database
+        // Load existing user profile
         loadUserProfile();
 
-        // Handle profile picture click
+        // Set profile picture click listener
         profilePicture.setOnClickListener(v -> openImagePicker());
 
-        // Handle save button click
-        saveButton.setOnClickListener(v -> saveUserProfile());
+        // Set save button click listener
+        btnSave.setOnClickListener(v -> saveUserProfile());
     }
 
     private void openImagePicker() {
@@ -68,6 +70,7 @@ public class ProfileManagementActivity extends AppCompatActivity {
             selectedImageUri = data.getData();
             try {
                 selectedBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImageUri);
+                selectedBitmap = resizeBitmap(selectedBitmap, 500, 500); // Resize for uniformity
                 profilePicture.setImageBitmap(selectedBitmap);
             } catch (IOException e) {
                 e.printStackTrace();
@@ -76,50 +79,82 @@ public class ProfileManagementActivity extends AppCompatActivity {
         }
     }
 
+    private Bitmap resizeBitmap(Bitmap bitmap, int maxWidth, int maxHeight) {
+        int width = bitmap.getWidth();
+        int height = bitmap.getHeight();
+        float bitmapRatio = (float) width / height;
+
+        if (bitmapRatio > 1) {
+            width = maxWidth;
+            height = (int) (width / bitmapRatio);
+        } else {
+            height = maxHeight;
+            width = (int) (height * bitmapRatio);
+        }
+
+        return Bitmap.createScaledBitmap(bitmap, width, height, true);
+    }
+
+    private String saveImageToInternalStorage(Bitmap bitmap) {
+        try {
+            String fileName = "profile_picture.png";
+            FileOutputStream fos = openFileOutput(fileName, MODE_PRIVATE);
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, fos);
+            fos.close();
+            return fileName; // Return file path
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    private Bitmap loadImageFromInternalStorage(String fileName) {
+        try {
+            FileInputStream fis = openFileInput(fileName);
+            return BitmapFactory.decodeStream(fis);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     private void loadUserProfile() {
-        // Fetch user data from the database
-        String[] userData = databaseHelper.getUserProfile();
+        String[] profile = dbHelper.getUserProfile();
+        if (profile != null) {
+            editName.setText(profile[0]);
+            editSkills.setText(profile[1]);
+            editPicturePath.setText(profile[2]);
 
-        if (userData != null) {
-            nameEditText.setText(userData[0]);
-            skillsEditText.setText(userData[1]);
-
-            // Load profile picture if available
-            Bitmap profileImage = databaseHelper.getProfilePicture();
-            if (profileImage != null) {
-                profilePicture.setImageBitmap(profileImage);
+            // Load profile picture if path exists
+            String profileImagePath = profile[2];
+            if (profileImagePath != null && !profileImagePath.isEmpty()) {
+                Bitmap profileImage = loadImageFromInternalStorage(profileImagePath);
+                if (profileImage != null) {
+                    profilePicture.setImageBitmap(profileImage);
+                }
             }
         }
     }
 
     private void saveUserProfile() {
-        String name = nameEditText.getText().toString().trim();
-        String skills = skillsEditText.getText().toString().trim();
+        String name = editName.getText().toString().trim();
+        String skills = editSkills.getText().toString().trim();
+        String picturePath = editPicturePath.getText().toString().trim();
 
         if (name.isEmpty() || skills.isEmpty()) {
-            Toast.makeText(this, "Please fill out all fields", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Name and skills are required!", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        // Convert selected image to byte array
-        byte[] profileImage = null;
         if (selectedBitmap != null) {
-            ByteArrayOutputStream stream = new ByteArrayOutputStream();
-            selectedBitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
-            profileImage = stream.toByteArray(); // Convert Bitmap to byte[]
+            picturePath = saveImageToInternalStorage(selectedBitmap);
         }
 
-        // Save user data to the database
-        boolean isSaved = databaseHelper.updateUserProfile(name, skills, profileImage);
-        if (isSaved) {
+        boolean isUpdated = dbHelper.updateUserProfile(name, skills, picturePath);
+        if (isUpdated) {
             Toast.makeText(this, "Profile updated successfully!", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(ProfileManagementActivity.this, LearnerHomeActivity.class);
-            startActivity(intent);
-            finish(); // Optional
         } else {
-            Toast.makeText(this, "Failed to update profile", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Failed to update profile!", Toast.LENGTH_SHORT).show();
         }
     }
-
-
 }

@@ -5,13 +5,12 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 
 public class DBHelper extends SQLiteOpenHelper {
 
+    // Database configuration
     private static final String DATABASE_NAME = "UserManagement.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     // Table: Users
     private static final String TABLE_USERS = "users";
@@ -26,9 +25,10 @@ public class DBHelper extends SQLiteOpenHelper {
 
     // Table: Profile
     private static final String TABLE_PROFILE = "user_profile";
+    private static final String COLUMN_PROFILE_ID = "id";
     private static final String COLUMN_PROFILE_NAME = "name";
     private static final String COLUMN_PROFILE_SKILLS = "skills";
-    private static final String COLUMN_PROFILE_PICTURE = "picture";
+    private static final String COLUMN_PROFILE_PICTURE_PATH = "picture_path";
 
     // SQL for table creation
     private static final String CREATE_TABLE_USERS =
@@ -44,9 +44,10 @@ public class DBHelper extends SQLiteOpenHelper {
 
     private static final String CREATE_TABLE_PROFILE =
             "CREATE TABLE " + TABLE_PROFILE + " (" +
+                    COLUMN_PROFILE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     COLUMN_PROFILE_NAME + " TEXT, " +
                     COLUMN_PROFILE_SKILLS + " TEXT, " +
-                    COLUMN_PROFILE_PICTURE + " BLOB);";
+                    COLUMN_PROFILE_PICTURE_PATH + " TEXT);";
 
     public DBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -61,14 +62,16 @@ public class DBHelper extends SQLiteOpenHelper {
         ContentValues defaultProfile = new ContentValues();
         defaultProfile.put(COLUMN_PROFILE_NAME, "Default Name");
         defaultProfile.put(COLUMN_PROFILE_SKILLS, "Default Skills");
+        defaultProfile.put(COLUMN_PROFILE_PICTURE_PATH, ""); // Default empty picture path
         db.insert(TABLE_PROFILE, null, defaultProfile);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_USERS);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_PROFILE);
-        onCreate(db);
+        if (oldVersion < 2) {
+            // Add picture_path column during upgrade
+            db.execSQL("ALTER TABLE " + TABLE_PROFILE + " ADD COLUMN " + COLUMN_PROFILE_PICTURE_PATH + " TEXT DEFAULT '';");
+        }
     }
 
     // User Management Methods
@@ -105,47 +108,28 @@ public class DBHelper extends SQLiteOpenHelper {
     public String[] getUserProfile() {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.query(TABLE_PROFILE,
-                new String[]{COLUMN_PROFILE_NAME, COLUMN_PROFILE_SKILLS},
+                new String[]{COLUMN_PROFILE_NAME, COLUMN_PROFILE_SKILLS, COLUMN_PROFILE_PICTURE_PATH},
                 null, null, null, null, null);
 
-        if (cursor.moveToFirst()) {
+        if (cursor != null && cursor.moveToFirst()) {
             String name = cursor.getString(0);
             String skills = cursor.getString(1);
+            String picturePath = cursor.getString(2);
             cursor.close();
-            return new String[]{name, skills};
+            return new String[]{name, skills, picturePath};
         }
-        cursor.close();
         return null;
     }
 
-    public Bitmap getProfilePicture() {
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.query(TABLE_PROFILE,
-                new String[]{COLUMN_PROFILE_PICTURE},
-                null, null, null, null, null);
-
-        if (cursor.moveToFirst()) {
-            byte[] image = cursor.getBlob(0);
-            if (image != null) {
-                return BitmapFactory.decodeByteArray(image, 0, image.length);
-            }
-        }
-        cursor.close();
-        return null;
-    }
-
-    public boolean updateUserProfile(String name, String skills, byte[] picture) {
+    public boolean updateUserProfile(String name, String skills, String picturePath) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-
         values.put(COLUMN_PROFILE_NAME, name);
         values.put(COLUMN_PROFILE_SKILLS, skills);
+        values.put(COLUMN_PROFILE_PICTURE_PATH, picturePath);
 
-        if (picture != null) {
-            values.put(COLUMN_PROFILE_PICTURE, picture);
-        }
-
-        int rowsAffected = db.update(TABLE_PROFILE, values, null, null);
+        // Update profile where the name matches (customize this as needed)
+        int rowsAffected = db.update(TABLE_PROFILE, values, COLUMN_PROFILE_NAME + "=?", new String[]{name});
         return rowsAffected > 0;
     }
 }
