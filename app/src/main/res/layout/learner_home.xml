@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#4CAF50"
+    android:background="@drawable/background_image"
     android:padding="16dp">
 
     <!-- Header Section -->
@@ -13,21 +13,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Learner Dashboard"
-        android:textSize="24sp"
+        android:textSize="30sp"
         android:gravity="center"
         android:textColor="#FFFFFF"
-        android:background="#388E3C"
-        android:padding="16dp"
-        android:layout_marginBottom="20dp" />
+        android:background="#242035"
+        android:padding="28dp"
+        android:layout_marginBottom="35dp" />
 
     <!-- Quick Options Section -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Quick Options"
-        android:textColor="#FFFFFF"
-        android:textSize="16sp"
-        android:layout_marginBottom="8dp" />
+        android:textColor="#B2A6EF"
+        android:textSize="25sp"
+        android:layout_marginBottom="10dp" />
 
     <!-- Cards for Options -->
     <LinearLayout
@@ -35,7 +35,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="#66BB6A"
+        android:background="#993A3A3A"
         android:padding="16dp"
         android:layout_marginBottom="12dp"
         android:elevation="4dp">
@@ -53,7 +53,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="#66BB6A"
+        android:background="#993A3A3A"
         android:padding="16dp"
         android:layout_marginBottom="12dp"
         android:elevation="4dp">
@@ -71,11 +71,11 @@
         android:id="@+id/profileManagementButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_marginTop="16dp"
-        android:background="#388E3C"
+        android:background="#80000000"
+        android:padding="12dp"
         android:text="Profile Management"
         android:textColor="#FFFFFF"
-        android:padding="12dp"
-        android:textSize="16sp"
-        android:layout_gravity="center" />
+        android:textSize="16sp" />
 </LinearLayout>

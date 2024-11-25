@@ -2,7 +2,8 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="@drawable/background_image">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,15 +15,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Resource People"
-            android:textSize="22sp"
+            android:textSize="30sp"
+            android:gravity="center"
+            android:textColor="#FFFFFF"
             android:textStyle="bold"
-            android:paddingBottom="12dp" />
+            android:paddingBottom="25dp" />
 
         <!-- Resource Person 1 -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="145dp"
-            android:layout_marginBottom="12dp"
+            android:layout_marginBottom="25dp"
             android:background="@drawable/box_background_pic"
             android:orientation="vertical"
             android:padding="16dp">
@@ -32,7 +35,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Dr. Jane Doe"
-                android:textSize="18sp"
+                android:textColor="#B2A6EF"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -41,6 +45,7 @@
                 android:layout_height="wrap_content"
                 android:paddingTop="4dp"
                 android:text="Expert in Data Science"
+                android:textColor="#222327"
                 android:textSize="16sp" />
 
             <RatingBar
@@ -58,7 +63,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="149dp"
-            android:layout_marginBottom="12dp"
+            android:layout_marginBottom="25dp"
             android:background="@drawable/box_background_pic"
 
             android:orientation="vertical"
@@ -69,7 +74,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Mr. John Smith"
-                android:textSize="18sp"
+                android:textColor="#B2A6EF"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -78,6 +84,7 @@
                 android:layout_height="wrap_content"
                 android:paddingTop="4dp"
                 android:text="Android Development Guru"
+                android:textColor="#222327"
                 android:textSize="16sp" />
 
             <RatingBar
@@ -105,7 +112,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Ms. Emily Johnson"
-                android:textSize="18sp"
+                android:textColor="#B2A6EF"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -114,6 +122,7 @@
                 android:layout_height="wrap_content"
                 android:paddingTop="4dp"
                 android:text="Web Development Specialist"
+                android:textColor="#222327"
                 android:textSize="16sp" />
 
             <RatingBar

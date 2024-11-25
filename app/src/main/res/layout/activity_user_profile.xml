@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="20dp"
-    android:background="@color/white">
+    android:background="@drawable/background_image">
+
 
     <ImageView
         android:id="@+id/profilePicture"
@@ -19,16 +20,19 @@
         android:focusable="true"
         android:contentDescription="Upload Profile Picture"/>
 
+
+
     <TextView
         android:id="@+id/changePhotoText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Change Photo"
-        android:textColor="@color/primaryColor"
+        android:textColor="#FFFFFF"
         android:layout_gravity="center_horizontal"
-        android:paddingBottom="20dp"
+        android:paddingBottom="25dp"
         android:clickable="true"
-        android:focusable="true"/>
+        android:focusable="true"
+        android:textSize="18sp"/>
 
     <EditText
         android:id="@+id/nameEditText"
@@ -36,6 +40,8 @@
         android:layout_height="wrap_content"
         android:hint="Name"
         android:padding="10dp"
+        android:background="#B6A2CA"
+        android:textSize="16sp"
         />
 
     <EditText
@@ -43,6 +49,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Skills (e.g., Programming, Cooking)"
+        android:textColor="#000000"
+        android:hintTextColor="#AAAAAA"
+        android:background="#B6A2CA"
         android:padding="10dp"
         android:layout_marginTop="10dp"/>
 

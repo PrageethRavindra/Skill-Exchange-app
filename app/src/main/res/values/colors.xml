@@ -8,4 +8,6 @@
     <color name="secondaryColor">#a5ff33</color>
     <color name="purple_500">#9C27B0</color>
     <color name="light_gray">#D3D3D3</color>
+    <color name="light_purple">#D3B5F2</color>
+
 </resources>

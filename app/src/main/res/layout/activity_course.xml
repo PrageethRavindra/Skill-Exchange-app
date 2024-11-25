@@ -38,7 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-
+            android:background="#AAC7DCB"
             android:padding="16dp"
             android:layout_marginTop="8dp"
             android:clickable="true"
