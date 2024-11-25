@@ -1,5 +1,6 @@
 package com.example.skillsexchangemobileapp.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -90,6 +91,11 @@ public class RegistrationActivity extends AppCompatActivity {
 
                 if (result != -1) {
                     Toast.makeText(RegistrationActivity.this, "Registration successful", Toast.LENGTH_SHORT).show();
+
+                    // Redirect to LoginActivity
+                    Intent intent = new Intent(RegistrationActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                    finish(); // Optional: close the current activity
                 } else {
                     Toast.makeText(RegistrationActivity.this, "Registration failed", Toast.LENGTH_SHORT).show();
                 }

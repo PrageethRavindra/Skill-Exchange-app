@@ -25,7 +25,7 @@ public class LearnerHomeActivity extends AppCompatActivity {
 
         // Initialize UI components
         coursesCard = findViewById(R.id.CourseCard); // Corrected ID
-        schedulingCard = findViewById(R.id.schedulingCard);
+        schedulingCard = findViewById(R.id.viewCourseCard);
         profileManagementButton = findViewById(R.id.profileManagementButton);
 
         // Set click listener for "Courses"

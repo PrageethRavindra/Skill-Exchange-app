@@ -12,14 +12,24 @@ import com.example.skillsexchangemobileapp.R;
 public class ResourcePeopleHomeActivity extends AppCompatActivity {
 
     private LinearLayout resourceManagementCard;
+    private LinearLayout viewCourseCard;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.resource_people_home);
 
-        resourceManagementCard = findViewById(R.id.resourceManagementCard); // Corrected ID
+        resourceManagementCard = findViewById(R.id.resourceManagementCard);
+        viewCourseCard = findViewById(R.id.viewCourseCard);// Corrected ID
 
+        viewCourseCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ResourcePeopleHomeActivity.this, Ongoing_resourcePeople_Courses.class);
+                startActivity(intent);
+                Toast.makeText(ResourcePeopleHomeActivity.this, "Navigating to Ongoing_resourcePeople_Courses", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         // Set click listener for "Courses"
         resourceManagementCard.setOnClickListener(new View.OnClickListener() {
