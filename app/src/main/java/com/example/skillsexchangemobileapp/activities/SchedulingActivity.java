@@ -8,6 +8,6 @@ public class SchedulingActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_scheduling);
+        setContentView(R.layout.learner_activity_scheduling);
     }
 }

@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    >
 
         <ImageView
             android:id="@+id/background_image"
@@ -22,18 +22,18 @@
         android:layout_marginTop="100dp" />
 
         <!-- Role Selection using Spinner -->
-        <Spinner
-            android:id="@+id/roleSpinner"
-            android:layout_below="@id/appLogo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:layout_centerHorizontal="true"
-            android:textColor="@color/white"
-            android:background="@android:color/transparent"
-            android:layout_marginTop="20dp"
-            android:padding="10dp"
-           />
+    <Spinner
+        android:id="@+id/roleSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/appLogo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:background="@android:color/transparent"
+        android:padding="10dp"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:visibility="visible" />
 
         <!-- Common Fields -->
         <EditText

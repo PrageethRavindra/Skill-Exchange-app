@@ -39,9 +39,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Name"
+        android:textColor="@color/light_gray"
+        android:textColorHint="@color/white"
         android:padding="10dp"
-        android:background="#B6A2CA"
-        android:textSize="16sp"
+        android:textSize="20sp"
         />
 
     <EditText
@@ -51,17 +52,18 @@
         android:hint="Skills (e.g., Programming, Cooking)"
         android:textColor="@color/light_gray"
         android:textColorHint="@color/white"
-        android:background="#B6A2CA"
         android:padding="10dp"
+        android:textSize="20sp"
         android:layout_marginTop="10dp"/>
 
     <Button
         android:id="@+id/saveButton"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Save"
         android:background="@drawable/button_border"
         android:layout_marginTop="20dp"
+        android:textSize="20sp"
         android:textColor="@color/white"
         android:padding="15dp"/>
 </LinearLayout>
