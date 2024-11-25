@@ -26,10 +26,9 @@ public class ProfileManagementActivity extends AppCompatActivity {
     private static final int PICK_IMAGE_REQUEST = 1;
 
     private ImageView profilePicture;
-    private EditText editName, editSkills, editPicturePath;
+    private EditText editName, editSkills;
     private Button btnSave;
 
-    private Uri selectedImageUri;
     private Bitmap selectedBitmap;
 
     private DBHelper dbHelper;
@@ -67,7 +66,7 @@ public class ProfileManagementActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null) {
-            selectedImageUri = data.getData();
+            Uri selectedImageUri = data.getData();
             try {
                 selectedBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImageUri);
                 selectedBitmap = resizeBitmap(selectedBitmap, 500, 500); // Resize for uniformity
@@ -123,7 +122,6 @@ public class ProfileManagementActivity extends AppCompatActivity {
         if (profile != null) {
             editName.setText(profile[0]);
             editSkills.setText(profile[1]);
-            editPicturePath.setText(profile[2]);
 
             // Load profile picture if path exists
             String profileImagePath = profile[2];
@@ -139,7 +137,7 @@ public class ProfileManagementActivity extends AppCompatActivity {
     private void saveUserProfile() {
         String name = editName.getText().toString().trim();
         String skills = editSkills.getText().toString().trim();
-        String picturePath = editPicturePath.getText().toString().trim();
+        String picturePath = null;
 
         if (name.isEmpty() || skills.isEmpty()) {
             Toast.makeText(this, "Name and skills are required!", Toast.LENGTH_SHORT).show();

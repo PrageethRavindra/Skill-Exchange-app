@@ -132,4 +132,18 @@ public class DBHelper extends SQLiteOpenHelper {
         int rowsAffected = db.update(TABLE_PROFILE, values, COLUMN_PROFILE_NAME + "=?", new String[]{name});
         return rowsAffected > 0;
     }
+
+    public boolean insertCourseDetails(String title, String description, String startDate, String endDate) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("title", title);
+        contentValues.put("description", description);
+        contentValues.put("start_date", startDate);
+        contentValues.put("end_date", endDate);
+
+        long result = db.insert("courses", null, contentValues);
+        db.close();
+        return result != -1; // Returns true if insertion was successful
+    }
+
 }
