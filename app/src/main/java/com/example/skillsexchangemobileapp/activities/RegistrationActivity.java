@@ -63,6 +63,19 @@ public class RegistrationActivity extends AppCompatActivity {
                     return;
                 }
 
+                // Check if email contains '@' sign
+                if (!email.contains("@")) {
+                    Toast.makeText(RegistrationActivity.this, "Enter a valid email", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                // Check if password has at least 6 characters
+                if (password.length() < 6) {
+                    Toast.makeText(RegistrationActivity.this, "Password must be at least 6 characters long", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                // Check if passwords match
                 if (!password.equals(confirmPassword)) {
                     Toast.makeText(RegistrationActivity.this, "Passwords do not match", Toast.LENGTH_SHORT).show();
                     return;
