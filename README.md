@@ -57,6 +57,18 @@ Use the search bar to find courses.
 Tap on a category to view and enroll in courses.
 Share your expertise by creating new courses.
 Screenshots
+
+
+
+
+
+
+
+
+
+
+
+
 ![Screenshot 2024-11-25 162352](https://github.com/user-attachments/assets/9cd077b1-b522-470c-be82-a96eb5847d59)
 ![Screenshot 2024-11-25 162459](https://github.com/user-attachments/assets/fe153de7-3b77-439e-ae7b-d00492d6c262)
 
