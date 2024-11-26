@@ -1,5 +1,6 @@
 package com.example.skillsexchangemobileapp.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -81,7 +82,13 @@ public class CourseActivity extends AppCompatActivity {
     // Method to show the selected category
     private void showCategory(String category) {
         Toast.makeText(CourseActivity.this, "Selected Category: " + category, Toast.LENGTH_SHORT).show();
-        // Logic for navigating to the selected category's courses can be added here
+
+        // Check if the selected category is "Programming" and navigate to the respective activity
+        if ("Programming".equals(category)) {
+            Intent intent = new Intent(CourseActivity.this, ViewAllCoursesActivity.class);
+            startActivity(intent);
+        }
+        // You can add similar conditions for other categories if needed
     }
 
     // Method to filter categories based on search input
